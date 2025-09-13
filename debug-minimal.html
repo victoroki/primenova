@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Blog | PrimoNova</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        .debug-log {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            margin: 10px 0;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Debug Blog Page</h1>
+        
+        <div id="debug-log" class="debug-log">
+            <div>Debug log will appear here...</div>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-12">
+                <div id="loading" class="text-center py-3">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-2">Loading blog posts...</p>
+                </div>
+                
+                <div id="content" style="display: none;">
+                    <h3>Blog Posts Loaded Successfully!</h3>
+                    <div id="posts-container" class="row">
+                        <!-- Posts will appear here -->
+                    </div>
+                </div>
+                
+                <div id="error" style="display: none;" class="alert alert-danger">
+                    <h4>Error Loading Posts</h4>
+                    <p id="error-message"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let debugLog = [];
+        let loadAttempts = 0;
+        let isLoading = false;
+
+        function addLog(message, isError = false) {
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = `[${timestamp}] ${message}`;
+            debugLog.push(logEntry);
+            
+            const logContainer = document.getElementById('debug-log');
+            const logDiv = document.createElement('div');
+            logDiv.textContent = logEntry;
+            if (isError) logDiv.style.color = 'red';
+            logContainer.appendChild(logDiv);
+            logContainer.scrollTop = logContainer.scrollHeight;
+            
+            console.log(logEntry);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            addLog('✅ DOM Content Loaded');
+            addLog('🔄 Starting blog post loading...');
+            
+            if (isLoading) {
+                addLog('⚠️ Already loading, skipping...', true);
+                return;
+            }
+            
+            loadBlogPosts();
+        });
+
+        function loadBlogPosts() {
+            if (isLoading) {
+                addLog('⚠️ Load function called but already loading', true);
+                return;
+            }
+            
+            isLoading = true;
+            loadAttempts++;
+            addLog(`📡 Fetch attempt #${loadAttempts} to data/blog.json`);
+            
+            // Set a timeout to prevent hanging
+            const timeoutId = setTimeout(() => {
+                addLog('⏰ Fetch timeout - request taking too long', true);
+                showError('Request timeout');
+                isLoading = false;
+            }, 10000);
+            
+            fetch('data/blog.json')
+                .then(response => {
+                    clearTimeout(timeoutId);
+                    addLog(`📡 Fetch response: ${response.status} ${response.statusText}`);
+                    
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    }
+                    
+                    return response.json();
+                })
+                .then(data => {
+                    addLog('✅ JSON parsed successfully');
+                    addLog(`📊 Found ${data.posts ? data.posts.length : 0} posts`);
+                    
+                    if (!data.posts || data.posts.length === 0) {
+                        throw new Error('No posts found in data');
+                    }
+                    
+                    displayPosts(data.posts);
+                    showSuccess();
+                    isLoading = false;
+                })
+                .catch(error => {
+                    clearTimeout(timeoutId);
+                    addLog(`❌ Error: ${error.message}`, true);
+                    showError(error.message);
+                    isLoading = false;
+                });
+        }
+
+        function displayPosts(posts) {
+            const container = document.getElementById('posts-container');
+            
+            container.innerHTML = posts.map(post => `
+                <div class="col-md-6 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">${post.title}</h5>
+                            <p class="card-text">${post.excerpt}</p>
+                            <small class="text-muted">Category: ${post.category}</small>
+                            <br>
+                            <a href="blog-post.html?id=${post.id}" class="btn btn-primary btn-sm mt-2">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            addLog(`✅ Rendered ${posts.length} posts to DOM`);
+        }
+
+        function showSuccess() {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+            document.getElementById('error').style.display = 'none';
+            addLog('🎉 Blog loaded successfully!');
+        }
+
+        function showError(message) {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('content').style.display = 'none';
+            document.getElementById('error').style.display = 'block';
+            document.getElementById('error-message').textContent = message;
+            addLog(`💥 Showing error: ${message}`, true);
+        }
+
+        // Monitor if this script runs multiple times
+        addLog('🚀 Script loaded and executing...');
+        
+        // Prevent any page reloads
+        window.addEventListener('beforeunload', function(e) {
+            addLog('⚠️ Page trying to unload/reload!', true);
+            e.preventDefault();
+            e.returnValue = '';
+        });
+        
+        // Monitor network activity
+        let requestCount = 0;
+        const originalFetch = window.fetch;
+        window.fetch = function(...args) {
+            requestCount++;
+            addLog(`🌐 Network request #${requestCount}: ${args[0]}`);
+            return originalFetch.apply(this, args);
+        };
+    </script>
+</body>
+</html>

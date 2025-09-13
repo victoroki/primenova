@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - PrimeNova</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 0 80px;
+        }
+        
+        .product-showcase {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        
+        .product-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+        
+        .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .hover-grow:hover {
+            transform: translateY(-5px);
+        }
+        
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .product-detail-card {
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        
+        .feature-list {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+        
+        .status-badge {
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+        
+        .product-image {
+            height: 300px;
+            object-fit: cover;
+            width: 100%;
+        }
+        
+        .grid-product-image {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Back Button -->
+    <a href="index.html" class="btn btn-outline-primary back-btn">
+        <i class="fas fa-arrow-left me-2"></i>Back to Home
+    </a>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="text-center">
+                <h1 class="display-4 mb-4" id="page-title">Our Products</h1>
+                <p class="lead" id="page-subtitle">Innovative solutions designed to solve real-world problems</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="product-showcase py-5">
+        <div class="container">
+            <div class="row g-4" id="products-container">
+                <!-- Products will be loaded from products.json -->
+                <div class="col-12 text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-3 text-muted">Loading products...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Function to create ID from title
+        function createId(title) {
+            return title.toLowerCase()
+                        .replace(/&/g, 'and')
+                        .replace(/[^a-z0-9]+/g, '-')
+                        .replace(/^-+|-+$/g, '');
+        }
+
+        // Map of expected IDs from your footer to product titles
+        const productMap = {
+            'savvysave': 'EduPrime ERP',
+            'digifarm': 'NovaMart Pro'
+        };
+
+        // Get product ID from URL hash
+        function getProductId() {
+            return window.location.hash.substring(1);
+        }
+
+        // Load products
+        fetch('data/products.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const container = document.getElementById('products-container');
+                const requestedProductId = getProductId();
+                
+                if (container) {
+                    if (requestedProductId) {
+                        // Find product by mapped title or by generated ID
+                        let selectedProduct = null;
+                        
+                        if (productMap[requestedProductId]) {
+                            selectedProduct = data.find(product => product.title === productMap[requestedProductId]);
+                        } else {
+                            selectedProduct = data.find(product => 
+                                (product.id && product.id === requestedProductId) ||
+                                createId(product.title) === requestedProductId
+                            );
+                        }
+                        
+                        if (selectedProduct) {
+                            // Update page info
+                            document.getElementById('page-title').textContent = selectedProduct.title;
+                            document.getElementById('page-subtitle').textContent = selectedProduct.subtitle || selectedProduct.description;
+                            document.title = `${selectedProduct.title} - PrimeNova`;
+                            
+                            // Single product detailed layout
+                            container.innerHTML = `
+                                <div class="col-12 fade-in visible">
+                                    <div class="card product-detail-card">
+                                        <div class="row g-0">
+                                            <div class="col-md-6">
+                                                <img src="assets/images/${selectedProduct.image}" 
+                                                     class="product-image" 
+                                                     alt="${selectedProduct.title}">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="card-body p-4">
+                                                    <div class="mb-4">
+                                                        <span class="badge ${selectedProduct.available ? 'bg-success' : 'bg-warning'} status-badge mb-3">
+                                                            ${selectedProduct.available ? 'Available Now' : 'In Development'}
+                                                        </span>
+                                                        <h2 class="card-title mb-3">${selectedProduct.title}</h2>
+                                                        ${selectedProduct.subtitle ? `<h5 class="text-primary mb-4">${selectedProduct.subtitle}</h5>` : ''}
+                                                        <p class="card-text lead">${selectedProduct.description}</p>
+                                                    </div>
+                                                    
+                                                    <div class="feature-list">
+                                                        <h5 class="mb-3">Key Features:</h5>
+                                                        <ul class="list-unstyled">
+                                                            ${selectedProduct.features.map(feature => 
+                                                                `<li class="mb-2 d-flex align-items-start">
+                                                                    <i class="fas fa-check-circle text-success me-2 mt-1"></i>
+                                                                    <span>${feature}</span>
+                                                                </li>`
+                                                            ).join('')}
+                                                        </ul>
+                                                    </div>
+                                                    
+                                                    <div class="mt-4">
+                                                        ${selectedProduct.available ? 
+                                                            `<button class="btn btn-primary btn-lg me-3"><i class="fas fa-rocket me-2"></i>Get Started</button>
+                                                             <button class="btn btn-outline-secondary btn-lg"><i class="fas fa-phone me-2"></i>Contact Sales</button>` :
+                                                            `<button class="btn btn-warning btn-lg me-3"><i class="fas fa-clock me-2"></i>Join Waitlist</button>
+                                                             <button class="btn btn-outline-secondary btn-lg">Learn More</button>`
+                                                        }
+                                                    </div>
+                                                    
+                                                    <div class="mt-4">
+                                                        <a href="products.html" class="btn btn-outline-primary">
+                                                            <i class="fas fa-arrow-left me-2"></i>View All Products
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                        } else {
+                            // Product not found
+                            container.innerHTML = `
+                                <div class="col-12 text-center">
+                                    <div class="alert alert-warning">
+                                        <h4><i class="fas fa-exclamation-triangle me-2"></i>Product Not Found</h4>
+                                        <p>The requested product "${requestedProductId}" could not be found.</p>
+                                        <a href="products.html" class="btn btn-primary">View All Products</a>
+                                    </div>
+                                </div>
+                            `;
+                        }
+                    } else {
+                        // Show all products (exact same as your index.html structure)
+                        container.innerHTML = '';
+                        data.forEach(product => {
+                            const productId = product.id || createId(product.title);
+                            container.innerHTML += `
+                                <div class="col-lg-6 fade-in visible">
+                                    <div class="card product-card h-100 hover-grow">
+                                        <div class="row g-0">
+                                            <div class="col-md-5">
+                                                <img src="assets/images/${product.image}" class="grid-product-image" alt="${product.title}">
+                                            </div>
+                                            <div class="col-md-7">
+                                                <div class="card-body">
+                                                    <h4 class="card-title">${product.title}</h4>
+                                                    ${product.subtitle ? `<h6 class="text-primary mb-3">${product.subtitle}</h6>` : ''}
+                                                    <p class="card-text">${product.description}</p>
+                                                    <ul class="list-unstyled mb-3">
+                                                        ${product.features.map(feature => `<li class="mb-1">• ${feature}</li>`).join('')}
+                                                    </ul>
+                                                    <div class="d-flex align-items-center justify-content-between">
+                                                        <span class="badge ${product.available ? 'bg-primary' : 'bg-secondary'}">
+                                                            ${product.available ? 'Available Now' : 'In Development'}
+                                                        </span>
+                                                        <a href="products.html#${productId}" class="text-primary text-decoration-none">
+                                                            Learn More <i class="fas fa-arrow-right ms-1"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                        });
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error loading products:', error);
+                const container = document.getElementById('products-container');
+                if (container) {
+                    container.innerHTML = `
+                        <div class="col-12 text-center">
+                            <div class="alert alert-danger">
+                                <h4><i class="fas fa-exclamation-circle me-2"></i>Error Loading Products</h4>
+                                <p class="text-danger">Unable to load products at this time. Please try again later.</p>
+                                <a href="index.html" class="btn btn-primary">Back to Home</a>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+        // Listen for hash changes
+        window.addEventListener('hashchange', () => {
+            location.reload();
+        });
+    </script>
+</body>
+</html>

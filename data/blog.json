@@ -1,0 +1,41 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "Launching Our Startup: The First 90 Days",
+      "excerpt": "Reflections on our journey from idea to MVP, the challenges we faced, and lessons learned in our first three months.",
+      "content": "<p>When we started PrimoNova in early 2023, we had a bold vision but little practical experience running a startup. The first 90 days were both exhilarating and terrifying as we navigated the uncharted waters of entrepreneurship.</p><h3>From Idea to Incorporation</h3><p>Our journey began with weekly coffee meetings at Nairobi's Java House, where we sketched out our initial concepts on napkins. The transition from casual brainstorming to formal incorporation was more complex than we anticipated. We spent nearly three weeks navigating Kenya's business registration process, learning about tax obligations, and setting up our initial banking relationships.</p><h3>Building the MVP</h3><p>With our legal foundations in place, we turned to product development. Our minimum viable product (MVP) went through four complete iterations before we settled on a version we were comfortable releasing to early testers. The biggest lesson? What seems simple in theory often becomes complex in implementation.</p><h3>Early Challenges</h3><p>Some of our most significant early challenges included:</p><ul><li>Finding affordable office space in Nairobi's competitive tech scene</li><li>Balancing perfectionism with the need to ship quickly</li><li>Establishing workflows with our remote team members</li><li>Managing cash flow with unpredictable early revenue</li></ul><h3>Key Takeaways</h3><p>Looking back, three lessons stand out:</p><ol><li><strong>Start small but think big:</strong> We initially tried to build too many features at once before focusing on core functionality.</li><li><strong>Document everything:</strong> Early decisions we didn't properly document came back to haunt us months later.</li><li><strong>Network aggressively:</strong> Our first five clients all came through personal connections we cultivated early.</li></ol><p>As we move beyond our initial 90 days, we're excited to share more of our journey through this blog. The road ahead remains challenging, but we're more confident in our ability to navigate it.</p>",
+      "category": "Startup Life",
+      "date": "2023-05-15",
+      "image": "assets/images/blog/startup-journey.png",
+      "author": {
+        "name": "Victor Mongare",
+        "avatar": "assets/images/team/alex.jpg",
+        "role": "CEO & Co-founder"
+      },
+      "readTime": "8 min read"
+    },
+    {
+      "id": "2",
+      "title": "Why We Chose React for Our Web Platform",
+      "excerpt": "An in-depth look at our technology stack decisions and why React stood out for our development needs.",
+      "content": "<p>Choosing the right frontend framework was one of our most critical early technical decisions. After extensive evaluation, we selected React for our web platform. Here's why.</p><h3>The Evaluation Process</h3><p>We spent nearly three weeks evaluating frameworks against our specific needs:</p><table class=\"table\"><thead><tr><th>Framework</th><th>Learning Curve</th><th>Performance</th><th>Ecosystem</th></tr></thead><tbody><tr><td>React</td><td>Moderate</td><td>Excellent</td><td>Extensive</td></tr><tr><td>Angular</td><td>Steep</td><td>Good</td><td>Comprehensive</td></tr><tr><td>Vue</td><td>Gentle</td><td>Good</td><td>Growing</td></tr></tbody></table><h3>Why React Won</h3><p>Several factors made React the right choice for our team:</p><ul><li><strong>Component Architecture:</strong> Perfect for our modular design approach</li><li><strong>Strong Ecosystem:</strong> Thousands of quality libraries available</li><li><strong>Talent Availability:</strong> Easier to find React developers in Nairobi</li><li><strong>Performance:</strong> Critical for our data-intensive applications</li></ul><h3>Implementation Experience</h3><p>After six months of development, we're pleased with our decision. Some highlights:</p><ul><li>Development velocity increased 40% after initial learning period</li><li>Component reuse has saved approximately 200 developer hours</li><li>State management with Redux has proven extremely effective</li></ul><p>While no framework is perfect, React has provided the ideal balance of power and flexibility for our needs. We're now exploring React Native for our mobile strategy.</p>",
+      "category": "Tech Stack",
+      "date": "2023-04-28",
+      "image": "assets/images/blog/react-code.png",
+      "author": {
+        "name": "Sarah Kamau",
+        "avatar": "assets/images/team/sarah.jpg",
+        "role": "Lead Developer"
+      },
+      "readTime": "10 min read"
+    }
+  ],
+  "categories": [
+    "Startup Life",
+    "Tech Stack",
+    "Design",
+    "Product",
+    "Team"
+  ]
+}

@@ -1,0 +1,30 @@
+[
+    {
+        "id": "school-erp",
+        "title": "EduPrime ERP",
+        "subtitle": "School Management System",
+        "description": "Complete educational ERP solution that streamlines school operations from enrollment to performance tracking.",
+        "image": "school-erp-system.png",
+        "features": [
+            "Student information management",
+            "Academic performance tracking",
+            "Fee management & payments",
+            "Teacher & parent portals"
+        ],
+        "available": true
+    },
+    {
+        "id": "ecommerce-system",
+        "title": "NovaMart Pro",
+        "subtitle": "E-commerce Platform",
+        "description": "Powerful e-commerce solution with mobile money integration and multi-vendor marketplace functionality.",
+        "image": "ecommerce-platform.png",
+        "features": [
+            "Multi-vendor marketplace",
+            "M-Pesa integration",
+            "Inventory management",
+            "Mobile-first design"
+        ],
+        "available": true
+    }
+]

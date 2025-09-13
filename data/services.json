@@ -1,0 +1,50 @@
+[
+    {
+        "title": "Graphic Design",
+        "icon": "fas fa-paint-brush",
+        "description": "From brand identity to marketing materials, we create visually stunning designs that communicate your message effectively.",
+        "features": [
+            "Logo & Brand Identity",
+            "Print & Digital Marketing",
+            "UI/UX Design",
+            "Social Media Graphics"
+        ],
+        "comingSoon": false
+    },
+    {
+        "title": "Web Design & Development",
+        "icon": "fas fa-laptop-code",
+        "description": "Responsive, high-performance websites that engage visitors and convert them into customers.",
+        "features": [
+            "Custom Website Development",
+            "E-Commerce Solutions",
+            "CMS Integration",
+            "SEO Optimization"
+        ],
+        "comingSoon": false
+    },
+    {
+        "title": "Mobile App Development",
+        "icon": "fas fa-mobile-alt",
+        "description": "Native and cross-platform mobile applications that deliver seamless user experiences.",
+        "features": [
+            "iOS & Android Development",
+            "Hybrid Apps (React Native/Flutter)",
+            "App Maintenance & Support",
+            "API Integration"
+        ],
+        "comingSoon": false
+    },
+    {
+        "title": "Cloud Migration",
+        "icon": "fas fa-cloud-upload-alt",
+        "description": "Future-proof your business with our AWS cloud migration services for enhanced scalability and security.",
+        "features": [
+            "Infrastructure Migration",
+            "Cloud Optimization",
+            "DevOps Implementation",
+            "Cost Management"
+        ],
+        "comingSoon": true
+    }
+]

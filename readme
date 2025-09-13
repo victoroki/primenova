@@ -1,0 +1,14 @@
+tech-nova-website/
+├── index.html
+├── css/
+│   ├── style.css
+│   └── animations.css
+├── js/
+│   ├── main.js
+│   └── scroll-effects.js
+├── data/
+│   ├── services.json
+│   └── products.json
+└── assets/
+    ├── images/
+    └── fonts/

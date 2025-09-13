@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers | TechNova</title>
+    <meta name="description" content="Join our growing startup and help build the future of digital solutions">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <style>
+        .benefits-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 215, 0, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+        
+        .application-form .form-control {
+            padding: 12px 15px;
+            border-radius: 8px;
+        }
+        
+        .application-form textarea {
+            min-height: 150px;
+        }
+
+        .startup-card {
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .startup-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/images/tech-nova-logo.png" alt="TechNova Logo" height="40">
+                <span>TechNova</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#products">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="team.html">Our Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="careers.html">Careers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#contact">Contact</a>
+                    </li>
+                </ul>
+                <a href="index.html#contact" class="btn btn-outline-primary ms-lg-3">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Careers Content
+    <section class="py-5 my-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h2 class="mb-4">Why Join TechNova?</h2>
+                    <p class="lead">We're a fast-growing startup where your ideas matter and your impact is immediate.</p>
+                    <p>At TechNova, you won't just be another employee - you'll be a key player in building something meaningful. Every team member has the opportunity to shape our products, culture, and future direction.</p>
+                    <p>Whether you're looking to take on new challenges, learn cutting-edge technologies, or make a real difference in people's lives, TechNova offers the perfect environment to grow your career.</p>
+                    <div class="mt-4">
+                        <a href="#join-us" class="btn btn-primary me-2">Join Our Team</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <img src="assets/images/team-photo.jpg" alt="TechNova Team" class="img-fluid rounded shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- What We Offer -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="mb-3">What We Offer</h2>
+                <p class="text-muted">Growing with us means growing together</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4 fade-in">
+                    <div class="card startup-card border-0 bg-white h-100 p-4 text-center">
+                        <div class="benefits-icon mx-auto">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h4 class="mb-3">Growth Opportunity</h4>
+                        <p>Fast-track your career in a rapidly growing startup environment.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4 fade-in">
+                    <div class="card startup-card border-0 bg-white h-100 p-4 text-center">
+                        <div class="benefits-icon mx-auto">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h4 class="mb-3">Innovation Focus</h4>
+                        <p>Work on cutting-edge projects and bring your creative ideas to life.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4 fade-in">
+                    <div class="card startup-card border-0 bg-white h-100 p-4 text-center">
+                        <div class="benefits-icon mx-auto">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4 class="mb-3">Collaborative Culture</h4>
+                        <p>Be part of a tight-knit team where everyone's voice is heard.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4 fade-in">
+                    <div class="card startup-card border-0 bg-white h-100 p-4 text-center">
+                        <div class="benefits-icon mx-auto">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h4 class="mb-3">Flexibility</h4>
+                        <p>Work-life balance with flexible hours and remote options.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4 fade-in">
+                    <div class="card startup-card border-0 bg-white h-100 p-4 text-center">
+                        <div class="benefits-icon mx-auto">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h4 class="mb-3">Learning & Development</h4>
+                        <p>Continuous learning opportunities and skill development support.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4 fade-in">
+                    <div class="card startup-card border-0 bg-white h-100 p-4 text-center">
+                        <div class="benefits-icon mx-auto">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4 class="mb-3">Ownership & Impact</h4>
+                        <p>Take ownership of projects and see the direct impact of your work.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Current Opportunities -->
+    <section class="py-5 my-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="mb-3">We're Always Looking for Talent</h2>
+                <p class="text-muted">Join our mission to transform digital experiences</p>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="card startup-card p-5">
+                        <div class="benefits-icon mx-auto mb-4">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3 class="mb-4">Open Application</h3>
+                        <p class="lead mb-4">We're always interested in meeting talented individuals who are passionate about technology and innovation.</p>
+                        <p class="mb-4">Whether you're a developer, designer, product manager, or bring other valuable skills to the table, we'd love to hear from you. Send us your information and let us know how you can contribute to our growing team.</p>
+                        <a href="#join-us" class="btn btn-primary btn-lg">Tell Us About Yourself</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form -->
+    <section id="join-us" class="py-5 bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body p-4 p-md-5">
+                            <h2 class="text-center mb-4">Join Our Team</h2>
+                            <form id="jobApplicationForm" class="application-form">
+                                <div class="row g-3 mb-3">
+                                    <div class="col-md-6">
+                                        <label for="firstName" class="form-label">First Name *</label>
+                                        <input type="text" class="form-control" id="firstName" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="lastName" class="form-label">Last Name *</label>
+                                        <input type="text" class="form-control" id="lastName" required>
+                                    </div>
+                                </div>
+                                <div class="row g-3 mb-3">
+                                    <div class="col-md-6">
+                                        <label for="email" class="form-label">Email Address *</label>
+                                        <input type="email" class="form-control" id="email" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="phone" class="form-label">Phone Number *</label>
+                                        <input type="tel" class="form-control" id="phone" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="role" class="form-label">Area of Interest/Role *</label>
+                                    <select class="form-control" id="role" required>
+                                        <option value="">Select your area of interest</option>
+                                        <option value="Frontend Development">Frontend Development</option>
+                                        <option value="Backend Development">Backend Development</option>
+                                        <option value="Mobile Development">Mobile Development</option>
+                                        <option value="UI/UX Design">UI/UX Design</option>
+                                        <option value="Product Management">Product Management</option>
+                                        <option value="Marketing">Marketing</option>
+                                        <option value="Sales">Sales</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="resume" class="form-label">Resume/CV *</label>
+                                    <input type="file" class="form-control" id="resume" accept=".pdf,.doc,.docx" required>
+                                    <div class="form-text">PDF, DOC or DOCX files only (max 5MB)</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">Tell us about yourself and why you'd like to join TechNova *</label>
+                                    <textarea class="form-control" id="message" required placeholder="Share your experience, skills, and what excites you about joining our startup..."></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="portfolio" class="form-label">Portfolio/LinkedIn/Website</label>
+                                    <input type="url" class="form-control" id="portfolio" placeholder="https://yourportfolio.com">
+                                </div>
+                                <div class="mb-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="consent" required>
+                                        <label class="form-check-label" for="consent">
+                                            I agree to TechNova's <a href="privacy.html">Privacy Policy</a> and consent to my data being processed for recruitment purposes. *
+                                        </label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100 btn-lg">Submit Application</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h3 class="h5 mb-3">
+                        <img src="assets/images/tech-nova-logo-white.png" alt="TechNova Logo" height="30" class="me-2">
+                        TechNova
+                    </h3>
+                    <p>Digital innovation startup specializing in design, development, and transformative technology solutions.</p>
+                    <div class="mt-4">
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-instagram fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h4 class="h5 mb-3">Services</h4>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="services.html#graphic-design">Graphic Design</a></li>
+                        <li class="mb-2"><a href="services.html#web-development">Web Development</a></li>
+                        <li class="mb-2"><a href="services.html#app-development">App Development</a></li>
+                        <li class="mb-2"><a href="services.html#cloud-migration">Cloud Migration</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h4 class="h5 mb-3">Products</h4>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="products.html#savvysave">SavvySave & Loan</a></li>
+                        <li class="mb-2"><a href="products.html#digifarm">DigiFarm Pro</a></li>
+                        <li class="mb-2"><a href="products.html">All Products</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h4 class="h5 mb-3">Company</h4>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="about.html">About Us</a></li>
+                        <li class="mb-2"><a href="team.html">Our Team</a></li>
+                        <li class="mb-2"><a href="careers.html">Careers</a></li>
+                        <li class="mb-2"><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h4 class="h5 mb-3">Legal</h4>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="privacy.html">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="terms.html">Terms of Service</a></li>
+                        <li class="mb-2"><a href="cookies.html">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="mt-5 mb-4">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="small mb-0">© <span id="current-year"></span> TechNova. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="small mb-0">Nairobi, Kenya | <a href="mailto:info@technova.com" class="text-white">info@technova.com</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    <script src="js/scroll-effects.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // Handle form submission
+            const jobForm = document.getElementById('jobApplicationForm');
+            if (jobForm) {
+                jobForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for your interest in joining TechNova! We will review your application and get back to you soon.');
+                    this.reset();
+                });
+            }
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

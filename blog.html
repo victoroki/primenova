@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | PrimoNova</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        .blog-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .blog-image {
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .blog-image-placeholder {
+            height: 250px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-size: 3rem;
+        }
+        
+        .author-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .author-avatar-fallback {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        
+        .category-filter {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #dee2e6;
+            background: white;
+            color: #6c757d;
+        }
+        
+        .category-filter:hover,
+        .category-filter.active {
+            background-color: #0d6efd;
+            color: white;
+            border-color: #0d6efd;
+        }
+        
+        .search-box {
+            border-radius: 25px;
+        }
+        
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: #0d6efd !important;
+        }
+        
+        .nav-link {
+            color: #495057 !important;
+            font-weight: 500;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            color: #0d6efd !important;
+        }
+        
+        .logo-fallback {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #0d6efd, #0056b3);
+            border-radius: 8px;
+            color: white;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/images/primo-nova-logo.png" alt="PrimoNova Logo" height="40" 
+                     onerror="handleLogoError(this)" id="mainLogo">
+                <span>PrimoNova</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#products">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="careers.html">Careers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#contact">Contact</a>
+                    </li>
+                </ul>
+                <a href="index.html#contact" class="btn btn-outline-primary ms-lg-3">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-4 fw-bold mb-3">Our Blog</h1>
+                    <p class="lead mb-4">Insights, stories, and learnings from our startup journey. Discover how we're building the future of digital innovation.</p>
+                </div>
+                <div class="col-lg-4">
+                    <div class="input-group">
+                        <input type="text" class="form-control search-box" id="searchInput" placeholder="Search articles...">
+                        <button class="btn btn-outline-primary" type="button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Filter -->
+    <section class="py-3 border-bottom">
+        <div class="container">
+            <div class="d-flex flex-wrap gap-2" id="categoryFilters">
+                <span class="badge category-filter active px-3 py-2" data-category="all">All Posts</span>
+                <!-- Categories will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Posts -->
+    <section class="py-5">
+        <div class="container">
+            <!-- Loading State -->
+            <div id="loading" class="text-center py-5">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="mt-3 text-muted">Loading blog posts...</p>
+            </div>
+
+            <!-- Blog Posts Grid -->
+            <div id="blogPosts" class="row g-4" style="display: none;">
+                <!-- Blog posts will be loaded here -->
+            </div>
+
+            <!-- No Posts Found -->
+            <div id="noPosts" class="text-center py-5" style="display: none;">
+                <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                <h4>No posts found</h4>
+                <p class="text-muted">Try adjusting your search or filter criteria.</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="error" class="alert alert-warning text-center" style="display: none;">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                <span id="error-message">Unable to load blog posts. Please try again later.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h3 class="mb-4">Stay Updated</h3>
+                    <p class="lead mb-4">Subscribe to our newsletter for the latest insights from our startup journey</p>
+                    <div class="row g-3 justify-content-center">
+                        <div class="col-md-8">
+                            <input type="email" class="form-control form-control-lg" placeholder="Enter your email">
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-primary btn-lg w-100">Subscribe</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h3 class="h5 mb-3">
+                        <img src="assets/images/primo-nova-logo-white.png" alt="PrimoNova Logo" height="30" class="me-2"
+                             onerror="handleFooterLogoError(this)" id="footerLogo">
+                        PrimoNova
+                    </h3>
+                    <p>Digital innovation startup specializing in design, development, and transformative technology solutions.</p>
+                    <div class="mt-4">
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-instagram fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h4 class="h5 mb-3">Services</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="services.html#graphic-design" class="text-white text-decoration-none">Graphic Design</a></li>
+                        <li class="mb-2"><a href="services.html#web-development" class="text-white text-decoration-none">Web Development</a></li>
+                        <li class="mb-2"><a href="services.html#app-development" class="text-white text-decoration-none">App Development</a></li>
+                        <li class="mb-2"><a href="services.html#cloud-migration" class="text-white text-decoration-none">Cloud Migration</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h4 class="h5 mb-3">Products</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="products.html#savvysave" class="text-white text-decoration-none">SavvySave & Loan</a></li>
+                        <li class="mb-2"><a href="products.html#digifarm" class="text-white text-decoration-none">DigiFarm Pro</a></li>
+                        <li class="mb-2"><a href="products.html" class="text-white text-decoration-none">All Products</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h4 class="h5 mb-3">Company</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="about.html" class="text-white text-decoration-none">About Us</a></li>
+                        <li class="mb-2"><a href="careers.html" class="text-white text-decoration-none">Careers</a></li>
+                        <li class="mb-2"><a href="blog.html" class="text-white text-decoration-none">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h4 class="h5 mb-3">Legal</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="privacy.html" class="text-white text-decoration-none">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="terms.html" class="text-white text-decoration-none">Terms of Service</a></li>
+                        <li class="mb-2"><a href="cookies.html" class="text-white text-decoration-none">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="mt-5 mb-4">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="small mb-0">© <span id="current-year"></span> PrimoNova. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="small mb-0">Nairobi, Kenya | <a href="mailto:info@primonova.com" class="text-white">info@primonova.com</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Global variables
+        let allPosts = [];
+        let currentFilter = 'all';
+        let isLoaded = false;
+
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // Load blog posts (only once)
+            if (!isLoaded) {
+                loadBlogPosts();
+            }
+            
+            // Setup search functionality
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('input', debounce(handleSearch, 300));
+            }
+        });
+
+        // Image error handlers
+        function handleLogoError(img) {
+            if (img.dataset.errorHandled) return; // Prevent infinite loop
+            img.dataset.errorHandled = 'true';
+            
+            const fallback = document.createElement('div');
+            fallback.className = 'logo-fallback';
+            fallback.textContent = 'PN';
+            fallback.title = 'PrimoNova';
+            
+            img.parentNode.insertBefore(fallback, img);
+            img.style.display = 'none';
+        }
+
+        function handleFooterLogoError(img) {
+            if (img.dataset.errorHandled) return; // Prevent infinite loop
+            img.dataset.errorHandled = 'true';
+            
+            const fallback = document.createElement('div');
+            fallback.className = 'logo-fallback';
+            fallback.style.backgroundColor = 'rgba(255,255,255,0.1)';
+            fallback.textContent = 'PN';
+            fallback.title = 'PrimoNova';
+            
+            img.parentNode.insertBefore(fallback, img);
+            img.style.display = 'none';
+        }
+
+        function handleBlogImageError(img) {
+            if (img.dataset.errorHandled) return; // Prevent infinite loop
+            img.dataset.errorHandled = 'true';
+            
+            const fallback = document.createElement('div');
+            fallback.className = 'blog-image-placeholder';
+            fallback.innerHTML = '<i class="fas fa-image"></i>';
+            
+            img.parentNode.insertBefore(fallback, img);
+            img.style.display = 'none';
+        }
+
+        function handleAuthorImageError(img, authorName) {
+            if (img.dataset.errorHandled) return; // Prevent infinite loop
+            img.dataset.errorHandled = 'true';
+            
+            const fallback = document.createElement('div');
+            fallback.className = 'author-avatar-fallback';
+            fallback.textContent = authorName.charAt(0).toUpperCase();
+            fallback.title = authorName;
+            
+            img.parentNode.insertBefore(fallback, img);
+            img.style.display = 'none';
+        }
+
+        // Debounce function to limit search frequency
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Load blog posts from JSON
+        function loadBlogPosts() {
+            if (isLoaded) return;
+            
+            fetch('data/blog.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Failed to load blog posts: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (!data.posts || !Array.isArray(data.posts)) {
+                        throw new Error('Invalid blog data format');
+                    }
+                    
+                    allPosts = data.posts;
+                    isLoaded = true;
+                    
+                    // Setup categories
+                    if (data.categories && Array.isArray(data.categories)) {
+                        setupCategories(data.categories);
+                    }
+                    
+                    // Display posts
+                    displayPosts(allPosts);
+                    showContent();
+                })
+                .catch(error => {
+                    console.error('Error loading blog posts:', error);
+                    showError(error.message);
+                });
+        }
+
+        // Setup category filters
+        function setupCategories(categories) {
+            const container = document.getElementById('categoryFilters');
+            
+            categories.forEach(category => {
+                const element = document.createElement('span');
+                element.className = 'badge category-filter px-3 py-2';
+                element.textContent = category;
+                element.dataset.category = category.toLowerCase().replace(/\s+/g, '-');
+                element.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    filterByCategory(this.dataset.category);
+                });
+                container.appendChild(element);
+            });
+        }
+
+        // Display blog posts
+        function displayPosts(posts) {
+            const container = document.getElementById('blogPosts');
+            
+            if (!posts || posts.length === 0) {
+                showNoPosts();
+                return;
+            }
+            
+            container.innerHTML = posts.map(post => {
+                const postDate = new Date(post.date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                
+                return `
+                    <div class="col-lg-6 col-xl-4">
+                        <article class="card blog-card h-100">
+                            <img src="${post.image}" class="card-img-top blog-image" alt="${post.title}"
+                                 onerror="handleBlogImageError(this)">
+                            <div class="card-body d-flex flex-column">
+                                <div class="mb-3">
+                                    <span class="badge bg-primary">${post.category}</span>
+                                    <small class="text-muted ms-2">${postDate} • ${post.readTime}</small>
+                                </div>
+                                
+                                <h3 class="card-title h5 mb-3">${post.title}</h3>
+                                <p class="card-text text-muted mb-4 flex-grow-1">${post.excerpt}</p>
+                                
+                                <div class="d-flex align-items-center justify-content-between mt-auto">
+                                    <div class="d-flex align-items-center">
+                                        <img src="${post.author.avatar}" class="author-img me-3" alt="${post.author.name}"
+                                             onerror="handleAuthorImageError(this, '${post.author.name}')">
+                                        <small class="text-muted">${post.author.name}</small>
+                                    </div>
+                                    <a href="blog-post.html?id=${post.id}" class="btn btn-outline-primary btn-sm">
+                                        Read More <i class="fas fa-arrow-right ms-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                `;
+            }).join('');
+            
+            showContent();
+        }
+
+        // Filter posts by category
+        function filterByCategory(category) {
+            if (!isLoaded) return;
+            
+            // Update active filter
+            document.querySelectorAll('.category-filter').forEach(filter => {
+                filter.classList.remove('active');
+            });
+            
+            const activeFilter = document.querySelector(`[data-category="${category}"]`);
+            if (activeFilter) {
+                activeFilter.classList.add('active');
+            }
+            
+            currentFilter = category;
+            
+            // Filter posts
+            let filteredPosts = allPosts;
+            if (category !== 'all') {
+                filteredPosts = allPosts.filter(post => 
+                    post.category.toLowerCase().replace(/\s+/g, '-') === category
+                );
+            }
+            
+            displayPosts(filteredPosts);
+        }
+
+        // Handle search input
+        function handleSearch(event) {
+            if (!isLoaded) return;
+            
+            const searchTerm = event.target.value.toLowerCase().trim();
+            let filteredPosts = allPosts;
+            
+            // Apply category filter first
+            if (currentFilter !== 'all') {
+                filteredPosts = filteredPosts.filter(post => 
+                    post.category.toLowerCase().replace(/\s+/g, '-') === currentFilter
+                );
+            }
+            
+            // Apply search filter
+            if (searchTerm) {
+                filteredPosts = filteredPosts.filter(post =>
+                    post.title.toLowerCase().includes(searchTerm) ||
+                    post.excerpt.toLowerCase().includes(searchTerm) ||
+                    post.category.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            displayPosts(filteredPosts);
+        }
+
+        // Show different states
+        function showContent() {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('blogPosts').style.display = 'flex';
+            document.getElementById('noPosts').style.display = 'none';
+            document.getElementById('error').style.display = 'none';
+        }
+
+        function showNoPosts() {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('blogPosts').style.display = 'none';
+            document.getElementById('noPosts').style.display = 'block';
+            document.getElementById('error').style.display = 'none';
+        }
+
+        function showError(message) {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('blogPosts').style.display = 'none';
+            document.getElementById('noPosts').style.display = 'none';
+            document.getElementById('error').style.display = 'block';
+            document.getElementById('error-message').textContent = message;
+        }
+    </script>
+</body>
+</html>
